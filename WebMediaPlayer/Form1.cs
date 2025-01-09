@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace WebMediaPlayer
 {
-    public partial class Form1 : Form
+    public partial class Homepage : Form
     {
-        public Form1()
+        public Homepage()
         {
             InitializeComponent();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
