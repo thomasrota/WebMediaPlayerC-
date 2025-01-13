@@ -29,70 +29,32 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
-            this.panelSidebar = new System.Windows.Forms.Panel();
-            this.labelTitleSeparator = new System.Windows.Forms.Label();
-            this.panelTitle = new System.Windows.Forms.Panel();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
-            this.buttonClose = new System.Windows.Forms.Button();
             this.panelTopBar = new System.Windows.Forms.Panel();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.panelTitle = new System.Windows.Forms.Panel();
+            this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelTitleSeparator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.panelSidebar.SuspendLayout();
+            this.buttonHome = new System.Windows.Forms.Button();
+            this.buttonSrc = new System.Windows.Forms.Button();
+            this.buttonUpload = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonProfile = new System.Windows.Forms.Button();
+            this.panelSidebar = new System.Windows.Forms.Panel();
+            this.panelContent = new System.Windows.Forms.Panel();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
+            this.panelSidebar.SuspendLayout();
             this.SuspendLayout();
             // 
-            // panelSidebar
+            // panelTopBar
             // 
-            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
-            this.panelSidebar.Controls.Add(this.label1);
-            this.panelSidebar.Controls.Add(this.labelTitleSeparator);
-            this.panelSidebar.Controls.Add(this.panelTitle);
-            this.panelSidebar.Controls.Add(this.buttonClose);
-            this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelSidebar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelSidebar.ForeColor = System.Drawing.Color.White;
-            this.panelSidebar.Location = new System.Drawing.Point(0, 0);
-            this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(167, 671);
-            this.panelSidebar.TabIndex = 0;
-            // 
-            // labelTitleSeparator
-            // 
-            this.labelTitleSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelTitleSeparator.Location = new System.Drawing.Point(0, 151);
-            this.labelTitleSeparator.Name = "labelTitleSeparator";
-            this.labelTitleSeparator.Size = new System.Drawing.Size(167, 2);
-            this.labelTitleSeparator.TabIndex = 2;
-            // 
-            // panelTitle
-            // 
-            this.panelTitle.Controls.Add(this.labelTitle);
-            this.panelTitle.Controls.Add(this.pictureBoxTitle);
-            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitle.Location = new System.Drawing.Point(0, 0);
-            this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(167, 153);
-            this.panelTitle.TabIndex = 1;
-            // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(13, 114);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(141, 21);
-            this.labelTitle.TabIndex = 2;
-            this.labelTitle.Text = "WebMediaPlayer";
-            // 
-            // pictureBoxTitle
-            // 
-            this.pictureBoxTitle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxTitle.BackgroundImage")));
-            this.pictureBoxTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxTitle.Location = new System.Drawing.Point(9, 12);
-            this.pictureBoxTitle.Name = "pictureBoxTitle";
-            this.pictureBoxTitle.Size = new System.Drawing.Size(149, 91);
-            this.pictureBoxTitle.TabIndex = 0;
-            this.pictureBoxTitle.TabStop = false;
+            this.panelTopBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTopBar.Location = new System.Drawing.Point(167, 0);
+            this.panelTopBar.Name = "panelTopBar";
+            this.panelTopBar.Size = new System.Drawing.Size(1058, 103);
+            this.panelTopBar.TabIndex = 1;
             // 
             // buttonClose
             // 
@@ -111,53 +73,192 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // panelTopBar
+            // panelTitle
             // 
-            this.panelTopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTopBar.Location = new System.Drawing.Point(167, 0);
-            this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(1058, 103);
-            this.panelTopBar.TabIndex = 1;
+            this.panelTitle.Controls.Add(this.labelTitle);
+            this.panelTitle.Controls.Add(this.pictureBoxTitle);
+            this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTitle.Location = new System.Drawing.Point(0, 0);
+            this.panelTitle.Name = "panelTitle";
+            this.panelTitle.Size = new System.Drawing.Size(167, 175);
+            this.panelTitle.TabIndex = 1;
+            // 
+            // pictureBoxTitle
+            // 
+            this.pictureBoxTitle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxTitle.BackgroundImage")));
+            this.pictureBoxTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxTitle.Location = new System.Drawing.Point(9, 12);
+            this.pictureBoxTitle.Name = "pictureBoxTitle";
+            this.pictureBoxTitle.Size = new System.Drawing.Size(149, 91);
+            this.pictureBoxTitle.TabIndex = 0;
+            this.pictureBoxTitle.TabStop = false;
+            // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(13, 114);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(141, 21);
+            this.labelTitle.TabIndex = 2;
+            this.labelTitle.Text = "WebMediaPlayer";
+            // 
+            // labelTitleSeparator
+            // 
+            this.labelTitleSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.labelTitleSeparator.Location = new System.Drawing.Point(0, 151);
+            this.labelTitleSeparator.Name = "labelTitleSeparator";
+            this.labelTitleSeparator.Size = new System.Drawing.Size(167, 2);
+            this.labelTitleSeparator.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(0, 630);
+            this.label1.Location = new System.Drawing.Point(0, 636);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(167, 2);
             this.label1.TabIndex = 3;
+            // 
+            // buttonHome
+            // 
+            this.buttonHome.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonHome.FlatAppearance.BorderSize = 0;
+            this.buttonHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHome.Image = ((System.Drawing.Image)(resources.GetObject("buttonHome.Image")));
+            this.buttonHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonHome.Location = new System.Drawing.Point(0, 175);
+            this.buttonHome.Name = "buttonHome";
+            this.buttonHome.Size = new System.Drawing.Size(167, 35);
+            this.buttonHome.TabIndex = 4;
+            this.buttonHome.Text = "Home";
+            this.buttonHome.UseVisualStyleBackColor = true;
+            // 
+            // buttonSrc
+            // 
+            this.buttonSrc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonSrc.FlatAppearance.BorderSize = 0;
+            this.buttonSrc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSrc.Image = ((System.Drawing.Image)(resources.GetObject("buttonSrc.Image")));
+            this.buttonSrc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSrc.Location = new System.Drawing.Point(0, 210);
+            this.buttonSrc.Name = "buttonSrc";
+            this.buttonSrc.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonSrc.Size = new System.Drawing.Size(167, 35);
+            this.buttonSrc.TabIndex = 5;
+            this.buttonSrc.Text = "Cerca";
+            this.buttonSrc.UseVisualStyleBackColor = true;
+            // 
+            // buttonUpload
+            // 
+            this.buttonUpload.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonUpload.FlatAppearance.BorderSize = 0;
+            this.buttonUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonUpload.Image = ((System.Drawing.Image)(resources.GetObject("buttonUpload.Image")));
+            this.buttonUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonUpload.Location = new System.Drawing.Point(0, 245);
+            this.buttonUpload.Name = "buttonUpload";
+            this.buttonUpload.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonUpload.Size = new System.Drawing.Size(167, 35);
+            this.buttonUpload.TabIndex = 6;
+            this.buttonUpload.Text = "Carica brano";
+            this.buttonUpload.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 280);
+            this.button1.Name = "button1";
+            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button1.Size = new System.Drawing.Size(167, 35);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "La tua libreria";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // buttonProfile
+            // 
+            this.buttonProfile.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.buttonProfile.FlatAppearance.BorderSize = 0;
+            this.buttonProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonProfile.Image = ((System.Drawing.Image)(resources.GetObject("buttonProfile.Image")));
+            this.buttonProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonProfile.Location = new System.Drawing.Point(0, 601);
+            this.buttonProfile.Name = "buttonProfile";
+            this.buttonProfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonProfile.Size = new System.Drawing.Size(167, 35);
+            this.buttonProfile.TabIndex = 8;
+            this.buttonProfile.Text = "Profilo";
+            this.buttonProfile.UseVisualStyleBackColor = true;
+            // 
+            // panelSidebar
+            // 
+            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.panelSidebar.Controls.Add(this.buttonProfile);
+            this.panelSidebar.Controls.Add(this.button1);
+            this.panelSidebar.Controls.Add(this.buttonUpload);
+            this.panelSidebar.Controls.Add(this.buttonSrc);
+            this.panelSidebar.Controls.Add(this.buttonHome);
+            this.panelSidebar.Controls.Add(this.label1);
+            this.panelSidebar.Controls.Add(this.labelTitleSeparator);
+            this.panelSidebar.Controls.Add(this.panelTitle);
+            this.panelSidebar.Controls.Add(this.buttonClose);
+            this.panelSidebar.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelSidebar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panelSidebar.ForeColor = System.Drawing.Color.White;
+            this.panelSidebar.Location = new System.Drawing.Point(0, 0);
+            this.panelSidebar.Name = "panelSidebar";
+            this.panelSidebar.Size = new System.Drawing.Size(167, 671);
+            this.panelSidebar.TabIndex = 0;
+            // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelContent.Location = new System.Drawing.Point(167, 100);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(1058, 571);
+            this.panelContent.TabIndex = 2;
             // 
             // Homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1225, 671);
+            this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelTopBar);
             this.Controls.Add(this.panelSidebar);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(1225, 671);
             this.MinimumSize = new System.Drawing.Size(1225, 671);
             this.Name = "Homepage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WebMediaPlayer";
-            this.panelSidebar.ResumeLayout(false);
             this.panelTitle.ResumeLayout(false);
             this.panelTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).EndInit();
+            this.panelSidebar.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelSidebar;
         private System.Windows.Forms.Panel panelTopBar;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Panel panelTitle;
-        private System.Windows.Forms.PictureBox pictureBoxTitle;
         private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.PictureBox pictureBoxTitle;
         private System.Windows.Forms.Label labelTitleSeparator;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonHome;
+        private System.Windows.Forms.Button buttonSrc;
+        private System.Windows.Forms.Button buttonUpload;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonProfile;
+        private System.Windows.Forms.Panel panelSidebar;
+        private System.Windows.Forms.Panel panelContent;
     }
 }
 
