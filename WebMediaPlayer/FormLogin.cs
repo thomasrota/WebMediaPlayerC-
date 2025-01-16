@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace WebMediaPlayer
 {
     public partial class FormLogin : Form
     {
         private Homepage mainForm;
+        public event Action LoginSuccessful;
         public FormLogin(Homepage parentForm)
         {
             InitializeComponent();
@@ -23,6 +25,30 @@ namespace WebMediaPlayer
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
+            string username = textBoxUsername.Text.Trim();
+            string password = textBoxPswd.Text.Trim();
+
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Inserisci username e password.");
+                return;
+            }
+
+            using (var dbHelper = new DatabaseHelper())
+            {
+                bool isValid = dbHelper.ValidateLogin(username, password);
+
+                if (isValid)
+                {
+                    MessageBox.Show("Login riuscito!");
+                    LoginSuccessful?.Invoke(); // Invia l'evento per abilitare i pulsanti nella Homepage
+                    mainForm.CloseFormsInput(); // Chiude il form di login
+                }
+                else
+                {
+                    MessageBox.Show("Username o password errati.");
+                }
+            }
         }
         private void buttonGoToRegister_Click(object sender, EventArgs e)
         {

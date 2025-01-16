@@ -38,7 +38,7 @@
             this.buttonHome = new System.Windows.Forms.Button();
             this.buttonSrc = new System.Windows.Forms.Button();
             this.buttonUpload = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonLibrary = new System.Windows.Forms.Button();
             this.buttonProfile = new System.Windows.Forms.Button();
             this.panelSidebar = new System.Windows.Forms.Panel();
             this.panelApp = new System.Windows.Forms.Panel();
@@ -153,20 +153,20 @@
             this.buttonUpload.Text = "Carica brano";
             this.buttonUpload.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonLibrary
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 280);
-            this.button1.Name = "button1";
-            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button1.Size = new System.Drawing.Size(167, 35);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "La tua libreria";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLibrary.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonLibrary.FlatAppearance.BorderSize = 0;
+            this.buttonLibrary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonLibrary.Image = ((System.Drawing.Image)(resources.GetObject("buttonLibrary.Image")));
+            this.buttonLibrary.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonLibrary.Location = new System.Drawing.Point(0, 280);
+            this.buttonLibrary.Name = "buttonLibrary";
+            this.buttonLibrary.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.buttonLibrary.Size = new System.Drawing.Size(167, 35);
+            this.buttonLibrary.TabIndex = 7;
+            this.buttonLibrary.Text = "La tua libreria";
+            this.buttonLibrary.UseVisualStyleBackColor = true;
             // 
             // buttonProfile
             // 
@@ -187,7 +187,7 @@
             // 
             this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.panelSidebar.Controls.Add(this.buttonProfile);
-            this.panelSidebar.Controls.Add(this.button1);
+            this.panelSidebar.Controls.Add(this.buttonLibrary);
             this.panelSidebar.Controls.Add(this.buttonUpload);
             this.panelSidebar.Controls.Add(this.buttonSrc);
             this.panelSidebar.Controls.Add(this.buttonHome);
@@ -244,7 +244,7 @@
         private System.Windows.Forms.Button buttonHome;
         private System.Windows.Forms.Button buttonSrc;
         private System.Windows.Forms.Button buttonUpload;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonLibrary;
         private System.Windows.Forms.Button buttonProfile;
         private System.Windows.Forms.Panel panelSidebar;
         private System.Windows.Forms.Panel panelApp;

@@ -16,6 +16,7 @@ namespace WebMediaPlayer
         {
             InitializeComponent();
             CloseFormsInput();
+            SetButtons(false);
             OpenFormInput<FormLogin>();
         }
 
@@ -24,7 +25,14 @@ namespace WebMediaPlayer
             Application.Exit();
         }
         #region Funzioni servizio
-        // Funzione per aprire un form in un pannello
+        public void SetButtons(bool isEnabled)
+        {
+            buttonHome.Enabled = isEnabled;
+            buttonSrc.Enabled = isEnabled;
+            buttonUpload.Enabled = isEnabled;
+            buttonLibrary.Enabled = isEnabled;
+            buttonProfile.Enabled = isEnabled;
+        }
         // Funzione per aprire un form in un pannello
         public void OpenFormInput<TypeOfForm>() where TypeOfForm : Form
         {
@@ -36,6 +44,12 @@ namespace WebMediaPlayer
                 if (typeof(TypeOfForm) == typeof(FormLogin))
                 {
                     FormInput = new FormLogin(this); // Passa il riferimento del form principale
+                    var loginForm = new FormLogin(this);
+                    loginForm.LoginSuccessful += () =>
+                    {
+                        SetButtons(true);
+                    };
+                    FormInput = loginForm;
                 }
                 else if (typeof(TypeOfForm) == typeof(FormRegister))
                 {
