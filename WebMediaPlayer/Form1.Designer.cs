@@ -42,6 +42,8 @@
 			this.buttonProfile = new System.Windows.Forms.Button();
 			this.panelSidebar = new System.Windows.Forms.Panel();
 			this.panelApp = new System.Windows.Forms.Panel();
+			this.buttonLogout = new System.Windows.Forms.Button();
+			this.buttonViewProfile = new System.Windows.Forms.Button();
 			this.panelTitle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
 			this.panelSidebar.SuspendLayout();
@@ -138,6 +140,7 @@
 			this.buttonSrc.TabIndex = 5;
 			this.buttonSrc.Text = "Cerca";
 			this.buttonSrc.UseVisualStyleBackColor = true;
+			this.buttonSrc.Click += new System.EventHandler(this.buttonSrc_Click);
 			// 
 			// buttonUpload
 			// 
@@ -153,6 +156,7 @@
 			this.buttonUpload.TabIndex = 6;
 			this.buttonUpload.Text = "Carica brano";
 			this.buttonUpload.UseVisualStyleBackColor = true;
+			this.buttonUpload.Click += new System.EventHandler(this.buttonUpload_Click);
 			// 
 			// buttonLibrary
 			// 
@@ -168,6 +172,7 @@
 			this.buttonLibrary.TabIndex = 7;
 			this.buttonLibrary.Text = "La tua libreria";
 			this.buttonLibrary.UseVisualStyleBackColor = true;
+			this.buttonLibrary.Click += new System.EventHandler(this.buttonLibrary_Click);
 			// 
 			// buttonProfile
 			// 
@@ -183,10 +188,13 @@
 			this.buttonProfile.TabIndex = 8;
 			this.buttonProfile.Text = "Profilo";
 			this.buttonProfile.UseVisualStyleBackColor = true;
+			this.buttonProfile.Click += new System.EventHandler(this.buttonProfile_Click);
 			// 
 			// panelSidebar
 			// 
 			this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+			this.panelSidebar.Controls.Add(this.buttonViewProfile);
+			this.panelSidebar.Controls.Add(this.buttonLogout);
 			this.panelSidebar.Controls.Add(this.buttonProfile);
 			this.panelSidebar.Controls.Add(this.buttonLibrary);
 			this.panelSidebar.Controls.Add(this.buttonUpload);
@@ -211,6 +219,37 @@
 			this.panelApp.Name = "panelApp";
 			this.panelApp.Size = new System.Drawing.Size(1058, 671);
 			this.panelApp.TabIndex = 1;
+			// 
+			// buttonLogout
+			// 
+			this.buttonLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+			this.buttonLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.buttonLogout.FlatAppearance.BorderSize = 0;
+			this.buttonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonLogout.Location = new System.Drawing.Point(0, 566);
+			this.buttonLogout.Name = "buttonLogout";
+			this.buttonLogout.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.buttonLogout.Size = new System.Drawing.Size(167, 35);
+			this.buttonLogout.TabIndex = 9;
+			this.buttonLogout.Text = "Logout";
+			this.buttonLogout.UseVisualStyleBackColor = false;
+			this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
+			// 
+			// buttonViewProfile
+			// 
+			this.buttonViewProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+			this.buttonViewProfile.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.buttonViewProfile.FlatAppearance.BorderSize = 0;
+			this.buttonViewProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonViewProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonViewProfile.Location = new System.Drawing.Point(0, 531);
+			this.buttonViewProfile.Name = "buttonViewProfile";
+			this.buttonViewProfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.buttonViewProfile.Size = new System.Drawing.Size(167, 35);
+			this.buttonViewProfile.TabIndex = 10;
+			this.buttonViewProfile.Text = "Profilo";
+			this.buttonViewProfile.UseVisualStyleBackColor = false;
 			// 
 			// Homepage
 			// 
@@ -249,6 +288,8 @@
         private System.Windows.Forms.Button buttonProfile;
         private System.Windows.Forms.Panel panelSidebar;
         private System.Windows.Forms.Panel panelApp;
-    }
+		private System.Windows.Forms.Button buttonLogout;
+		private System.Windows.Forms.Button buttonViewProfile;
+	}
 }
 

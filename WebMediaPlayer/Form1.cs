@@ -12,24 +12,55 @@ namespace WebMediaPlayer
 {
     public partial class Homepage : Form
     {
-        public Homepage()
+        public string Username { get; set; }
+		public Homepage()
         {
             InitializeComponent();
             CloseFormsInput();
             SetButtons(false);
             OpenFormInput<FormLogin>();
-        }
+            buttonViewProfile.Visible = false;
+            buttonLogout.Visible = false;
+		}
 
+		#region Funzioni eventi
         private void buttonClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
         private void buttonHome_Click(object sender, EventArgs e)
         {
-            OpenFormInput<FormHomepage>();
+            CloseFormsInput();
+			OpenFormInput<FormHomepage>();
+		}
+        private void buttonSrc_Click(object sender, EventArgs e)
+        {
+
         }
-		#region Funzioni servizio
-		public void SetButtons(bool isEnabled)
+        private void buttonUpload_Click(object sender, EventArgs e)
+        {
+
+        }
+		private void buttonLibrary_Click(object sender, EventArgs e)
+		{
+
+		}
+		private void buttonProfile_Click(object sender, EventArgs e)
+        {
+            ToggleProfileActions();
+        }
+        private void buttonLogout_Click(object sender, EventArgs e)
+        {
+            CloseFormsInput();
+			SetButtons(false);
+			buttonViewProfile.Visible = false;
+			buttonLogout.Visible = false;
+			buttonProfile.Text = "Profilo";
+			OpenFormInput<FormLogin>();
+		}
+		#endregion
+        #region Funzioni servizio
+        public void SetButtons(bool isEnabled)
         {
             buttonHome.Enabled = isEnabled;
             buttonSrc.Enabled = isEnabled;
@@ -37,6 +68,20 @@ namespace WebMediaPlayer
             buttonLibrary.Enabled = isEnabled;
             buttonProfile.Enabled = isEnabled;
         }
+
+        public void ToggleProfileActions()
+        {
+            if (buttonViewProfile.Visible && buttonLogout.Visible)
+			{
+				buttonViewProfile.Visible = false;
+				buttonLogout.Visible = false;
+			}
+			else
+			{
+				buttonViewProfile.Visible = true;
+				buttonLogout.Visible = true;
+			}
+		}
         // Funzione per aprire un form in un pannello
         public void OpenFormInput<TypeOfForm>() where TypeOfForm : Form
         {
@@ -52,6 +97,7 @@ namespace WebMediaPlayer
                     loginForm.LoginSuccessful += () =>
                     {
                         SetButtons(true);
+                        buttonProfile.Text = Username;
                     };
                     FormInput = loginForm;
                 }
@@ -88,6 +134,7 @@ namespace WebMediaPlayer
                 FormInput.Close();
             }
         }
+
 		#endregion
 	}
 }
