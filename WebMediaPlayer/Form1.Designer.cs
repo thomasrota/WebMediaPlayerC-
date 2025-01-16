@@ -29,11 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Homepage));
-            this.panelTopBar = new System.Windows.Forms.Panel();
             this.buttonClose = new System.Windows.Forms.Button();
             this.panelTitle = new System.Windows.Forms.Panel();
-            this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
             this.labelTitleSeparator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonHome = new System.Windows.Forms.Button();
@@ -42,19 +41,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonProfile = new System.Windows.Forms.Button();
             this.panelSidebar = new System.Windows.Forms.Panel();
-            this.panelContent = new System.Windows.Forms.Panel();
+            this.panelApp = new System.Windows.Forms.Panel();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
             this.panelSidebar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelTopBar
-            // 
-            this.panelTopBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTopBar.Location = new System.Drawing.Point(167, 0);
-            this.panelTopBar.Name = "panelTopBar";
-            this.panelTopBar.Size = new System.Drawing.Size(1058, 103);
-            this.panelTopBar.TabIndex = 1;
             // 
             // buttonClose
             // 
@@ -83,6 +74,15 @@
             this.panelTitle.Size = new System.Drawing.Size(167, 175);
             this.panelTitle.TabIndex = 1;
             // 
+            // labelTitle
+            // 
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Location = new System.Drawing.Point(13, 114);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(141, 21);
+            this.labelTitle.TabIndex = 2;
+            this.labelTitle.Text = "WebMediaPlayer";
+            // 
             // pictureBoxTitle
             // 
             this.pictureBoxTitle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxTitle.BackgroundImage")));
@@ -92,15 +92,6 @@
             this.pictureBoxTitle.Size = new System.Drawing.Size(149, 91);
             this.pictureBoxTitle.TabIndex = 0;
             this.pictureBoxTitle.TabStop = false;
-            // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Location = new System.Drawing.Point(13, 114);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(141, 21);
-            this.labelTitle.TabIndex = 2;
-            this.labelTitle.Text = "WebMediaPlayer";
             // 
             // labelTitleSeparator
             // 
@@ -212,21 +203,20 @@
             this.panelSidebar.Size = new System.Drawing.Size(167, 671);
             this.panelSidebar.TabIndex = 0;
             // 
-            // panelContent
+            // panelApp
             // 
-            this.panelContent.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelContent.Location = new System.Drawing.Point(167, 100);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(1058, 571);
-            this.panelContent.TabIndex = 2;
+            this.panelApp.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelApp.Location = new System.Drawing.Point(167, 0);
+            this.panelApp.Name = "panelApp";
+            this.panelApp.Size = new System.Drawing.Size(1058, 671);
+            this.panelApp.TabIndex = 1;
             // 
             // Homepage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1225, 671);
-            this.Controls.Add(this.panelContent);
-            this.Controls.Add(this.panelTopBar);
+            this.Controls.Add(this.panelApp);
             this.Controls.Add(this.panelSidebar);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -245,7 +235,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panelTopBar;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.Panel panelTitle;
         private System.Windows.Forms.Label labelTitle;
@@ -258,7 +247,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button buttonProfile;
         private System.Windows.Forms.Panel panelSidebar;
-        private System.Windows.Forms.Panel panelContent;
+        private System.Windows.Forms.Panel panelApp;
     }
 }
 
