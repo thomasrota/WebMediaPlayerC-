@@ -94,6 +94,7 @@
             // 
             this.textBoxPswd.Location = new System.Drawing.Point(13, 207);
             this.textBoxPswd.Name = "textBoxPswd";
+            this.textBoxPswd.PasswordChar = '*';
             this.textBoxPswd.Size = new System.Drawing.Size(285, 22);
             this.textBoxPswd.TabIndex = 8;
             // 
