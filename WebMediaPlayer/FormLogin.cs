@@ -23,33 +23,35 @@ namespace WebMediaPlayer
             mainForm = parentForm;
         }
 
-        private void buttonLogin_Click(object sender, EventArgs e)
-        {
-            string username = textBoxUsername.Text.Trim();
-            string password = textBoxPswd.Text.Trim();
+		private void buttonLogin_Click(object sender, EventArgs e)
+		{
+			string username = textBoxUsername.Text.Trim();
+			string password = textBoxPswd.Text.Trim();
 
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show("Inserisci username e password.");
-                return;
-            }
+			if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+			{
+				MessageBox.Show("Username e password non possono essere vuoti.", "Errore di login", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
 
-            using (var dbHelper = new DatabaseHelper())
-            {
-                bool isValid = dbHelper.ValidateLogin(username, password);
+			using (var dbHelper = new DatabaseHelper())
+			{
+				bool isValid = dbHelper.ValidateLogin(username, password);
 
-                if (isValid)
-                {
-                    MessageBox.Show("Login riuscito!");
-                    LoginSuccessful?.Invoke(); // Invia l'evento per abilitare i pulsanti nella Homepage
-                    mainForm.CloseFormsInput(); // Chiude il form di login
-                }
-                else
-                {
-                    MessageBox.Show("Username o password errati.");
-                }
-            }
-        }
+				if (isValid)
+				{
+					MessageBox.Show("Login riuscito!", "WebMediaPlayer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					LoginSuccessful?.Invoke(); // Invia l'evento per abilitare i pulsanti nella Homepage
+					mainForm.CloseFormsInput(); // Chiude il form di login
+				}
+				else
+				{
+					MessageBox.Show("Username o password errati.", "Errore di login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+					textBoxUsername.Text = "";
+					textBoxPswd.Text = "";
+				}
+			}
+		}
         private void buttonGoToRegister_Click(object sender, EventArgs e)
         {
             mainForm.CloseFormsInput();

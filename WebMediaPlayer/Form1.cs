@@ -24,8 +24,12 @@ namespace WebMediaPlayer
         {
             Application.Exit();
         }
-        #region Funzioni servizio
-        public void SetButtons(bool isEnabled)
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            OpenFormInput<FormHomepage>();
+        }
+		#region Funzioni servizio
+		public void SetButtons(bool isEnabled)
         {
             buttonHome.Enabled = isEnabled;
             buttonSrc.Enabled = isEnabled;
@@ -84,6 +88,6 @@ namespace WebMediaPlayer
                 FormInput.Close();
             }
         }
-        #endregion
-    }
+		#endregion
+	}
 }
