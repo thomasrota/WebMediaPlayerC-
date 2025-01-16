@@ -14,9 +14,11 @@ namespace WebMediaPlayer
 {
     public partial class FormLogin : Form
     {
-        public FormLogin()
+        private Homepage mainForm;
+        public FormLogin(Homepage parentForm)
         {
             InitializeComponent();
+            mainForm = parentForm;
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -24,7 +26,8 @@ namespace WebMediaPlayer
         }
         private void buttonGoToRegister_Click(object sender, EventArgs e)
         {
-            this.Close();
+            mainForm.CloseFormsInput();
+            mainForm.OpenFormInput<FormRegister>();
         }
     }
 }

@@ -12,9 +12,22 @@ namespace WebMediaPlayer
 {
     public partial class FormRegister : Form
     {
-        public FormRegister()
+        private Homepage mainForm;
+        public FormRegister(Homepage parentForm)
         {
             InitializeComponent();
+            mainForm = parentForm;
+        }
+
+        private void buttonRegister_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonGoToLogin_Click(object sender, EventArgs e)
+        {
+            mainForm.CloseFormsInput();
+            mainForm.OpenFormInput<FormLogin>();
         }
     }
 }

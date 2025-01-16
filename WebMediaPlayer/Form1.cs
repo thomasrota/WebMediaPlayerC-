@@ -25,13 +25,28 @@ namespace WebMediaPlayer
         }
         #region Funzioni servizio
         // Funzione per aprire un form in un pannello
-        private void OpenFormInput<MyForm>() where MyForm : Form, new()
+        // Funzione per aprire un form in un pannello
+        public void OpenFormInput<TypeOfForm>() where TypeOfForm : Form
         {
-            Form FormInput;
-            FormInput = panelApp.Controls.OfType<MyForm>().FirstOrDefault();
+            Form FormInput = panelApp.Controls.OfType<TypeOfForm>().FirstOrDefault();
+
             if (FormInput == null)
             {
-                FormInput = new MyForm();
+                // Controlla il tipo del form e istanzialo con il costruttore appropriato
+                if (typeof(TypeOfForm) == typeof(FormLogin))
+                {
+                    FormInput = new FormLogin(this); // Passa il riferimento del form principale
+                }
+                else if (typeof(TypeOfForm) == typeof(FormRegister))
+                {
+                    FormInput = new FormRegister(this); // Passa il riferimento del form principale
+                }
+                else
+                {
+                    // Usa il costruttore predefinito per altri form
+                    FormInput = Activator.CreateInstance<TypeOfForm>();
+                }
+
                 FormInput.TopLevel = false;
                 FormInput.FormBorderStyle = FormBorderStyle.None;
                 FormInput.Dock = DockStyle.Fill;
@@ -45,8 +60,9 @@ namespace WebMediaPlayer
                 FormInput.BringToFront();
             }
         }
+
         // Funzione per chiudere form nel pannello
-        private void CloseFormsInput()
+        public void CloseFormsInput()
         {
             Form FormInput = panelApp.Controls.OfType<Form>().FirstOrDefault();
             if (FormInput != null)

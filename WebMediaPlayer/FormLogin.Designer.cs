@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.panelLoginForm = new System.Windows.Forms.Panel();
             this.buttonGoToRegister = new System.Windows.Forms.Button();
             this.buttonLogin = new System.Windows.Forms.Button();
@@ -38,9 +37,7 @@
             this.labelLoginFormUsrnm = new System.Windows.Forms.Label();
             this.labelLoginFormTitle = new System.Windows.Forms.Label();
             this.labelTitleSeparator = new System.Windows.Forms.Label();
-            this.pictureBoxTitle = new System.Windows.Forms.PictureBox();
             this.panelLoginForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
             this.SuspendLayout();
             // 
             // panelLoginForm
@@ -56,7 +53,7 @@
             this.panelLoginForm.Controls.Add(this.labelLoginFormTitle);
             this.panelLoginForm.Controls.Add(this.labelTitleSeparator);
             this.panelLoginForm.ForeColor = System.Drawing.Color.White;
-            this.panelLoginForm.Location = new System.Drawing.Point(363, 203);
+            this.panelLoginForm.Location = new System.Drawing.Point(363, 138);
             this.panelLoginForm.Name = "panelLoginForm";
             this.panelLoginForm.Size = new System.Drawing.Size(309, 347);
             this.panelLoginForm.TabIndex = 0;
@@ -145,30 +142,18 @@
             this.labelTitleSeparator.Size = new System.Drawing.Size(285, 2);
             this.labelTitleSeparator.TabIndex = 3;
             // 
-            // pictureBoxTitle
-            // 
-            this.pictureBoxTitle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxTitle.BackgroundImage")));
-            this.pictureBoxTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxTitle.Location = new System.Drawing.Point(445, 106);
-            this.pictureBoxTitle.Name = "pictureBoxTitle";
-            this.pictureBoxTitle.Size = new System.Drawing.Size(149, 91);
-            this.pictureBoxTitle.TabIndex = 1;
-            this.pictureBoxTitle.TabStop = false;
-            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1042, 632);
-            this.Controls.Add(this.pictureBoxTitle);
             this.Controls.Add(this.panelLoginForm);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.Name = "FormLogin";
             this.Text = "FormLogin";
             this.panelLoginForm.ResumeLayout(false);
             this.panelLoginForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,7 +161,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelLoginForm;
-        private System.Windows.Forms.PictureBox pictureBoxTitle;
         private System.Windows.Forms.Label labelLoginFormTitle;
         private System.Windows.Forms.Label labelTitleSeparator;
         private System.Windows.Forms.Label labelLoginFormPswd;
