@@ -250,6 +250,7 @@
 			this.buttonViewProfile.TabIndex = 10;
 			this.buttonViewProfile.Text = "Profilo";
 			this.buttonViewProfile.UseVisualStyleBackColor = false;
+			this.buttonViewProfile.Click += new System.EventHandler(this.buttonViewProfile_Click);
 			// 
 			// Homepage
 			// 

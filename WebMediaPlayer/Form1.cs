@@ -45,6 +45,10 @@ namespace WebMediaPlayer
 		{
 
 		}
+		private void buttonViewProfile_Click(object sender, EventArgs e)
+		{
+
+		}
 		private void buttonProfile_Click(object sender, EventArgs e)
         {
             ToggleProfileActions();
