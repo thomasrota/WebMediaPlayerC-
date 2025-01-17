@@ -190,6 +190,57 @@ namespace WebMediaPlayer
 
 			return recommendedAlbums;
 		}
+		public int GetArtistId(string artistName)
+		{
+			string query = "SELECT id FROM WBM_artista WHERE nome = @artist";
+			int artistId = -1;
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artist", artistName);
+					artistId = Convert.ToInt32(command.ExecuteScalar());
+				}
+			}
+			return artistId;
+		}
+		public List<(string titolo, string album, string mp3)> GetRecentTracksByArtist(string artist)
+		{
+			int artistId = GetArtistId(artist);
+			string query = @"
+                SELECT b.titolo, al.titolo AS album, b.mp3 
+                FROM WBM_brano b
+                JOIN WBM_album al ON b.id_album = al.id
+                JOIN WBM_artista_album aa ON al.id = aa.id_album
+                WHERE aa.id_artista = @artistId
+                ORDER BY b.id DESC
+                LIMIT 3";
+
+			var tracks = new List<(string titolo, string album, string mp3)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							string titolo = reader.GetString("titolo");
+							string album = reader.GetString("album");
+							string mp3 = reader.GetString("mp3");
+							tracks.Add((titolo, album, mp3));
+						}
+					}
+				}
+			}
+
+			return tracks;
+		}
 	}
 }
 
