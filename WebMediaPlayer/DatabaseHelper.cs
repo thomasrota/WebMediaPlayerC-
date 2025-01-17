@@ -99,6 +99,97 @@ namespace WebMediaPlayer
 				}
 			}
 		}
+
+		public int GetUserId(string username)
+		{
+			string query = "SELECT id FROM wbm_utente WHERE username = @username";
+			int userId = -1;
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@username", username);
+					userId = Convert.ToInt32(command.ExecuteScalar());
+				}
+			}
+			return userId;
+		}
+
+		public List<(int id, string nome, string immagine)> GetRecentArtists(int userId)
+		{
+			string query = @"
+                SELECT a.id, a.nome, a.immagine 
+                FROM WBM_artista a
+                JOIN WBM_artista_album aa ON a.id = aa.id_artista
+                JOIN WBM_album al ON aa.id_album = al.id
+                JOIN WBM_brano b ON al.id = b.id_album
+                JOIN WBM_utente_brani ub ON b.id = ub.id_brano
+                WHERE ub.id_utente = @userId
+                GROUP BY a.id
+                ORDER BY a.id DESC
+                LIMIT 6";
+
+			var recentArtists = new List<(int id, string nome, string immagine)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							int id = reader.GetInt32("id");
+							string nome = reader.GetString("nome");
+							string immagine = reader.GetString("immagine");
+							recentArtists.Add((id, nome, immagine));
+						}
+					}
+				}
+			}
+
+			return recentArtists;
+		}
+		public List<(int id, string titolo, string immagine)> GetRecommendedAlbums(int userId)
+		{
+			string query = @"
+                SELECT al.id, al.titolo, al.immagine 
+                FROM WBM_album al
+                JOIN WBM_brano b ON al.id = b.id_album
+                JOIN WBM_utente_brani ub ON b.id = ub.id_brano
+                WHERE ub.id_utente = @userId
+                GROUP BY al.id, al.titolo, al.immagine
+                ORDER BY RAND()
+                LIMIT 10";
+
+			var recommendedAlbums = new List<(int id, string titolo, string immagine)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							int id = reader.GetInt32("id");
+							string titolo = reader.GetString("titolo");
+							string immagine = reader.GetString("immagine");
+							recommendedAlbums.Add((id, titolo, immagine));
+						}
+					}
+				}
+			}
+
+			return recommendedAlbums;
+		}
 	}
 }
 

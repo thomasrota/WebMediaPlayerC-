@@ -13,6 +13,7 @@ namespace WebMediaPlayer
     public partial class Homepage : Form
     {
         public string Username { get; set; }
+        public int UserId { get; set; }
 		public Homepage()
         {
             InitializeComponent();
@@ -106,10 +107,10 @@ namespace WebMediaPlayer
                     FormInput = loginForm;
                 }
                 else if (typeof(TypeOfForm) == typeof(FormRegister))
-                {
-                    FormInput = new FormRegister(this); // Passa il riferimento del form principale
-                }
-                else
+                    FormInput = new FormRegister(this);
+                else if (typeof(TypeOfForm) == typeof(FormHomepage))
+                    FormInput = new FormHomepage(this);
+				else
                 {
                     // Usa il costruttore predefinito per altri form
                     FormInput = Activator.CreateInstance<TypeOfForm>();

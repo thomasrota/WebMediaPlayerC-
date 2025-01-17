@@ -120,6 +120,12 @@
     <Compile Include="FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModal.Designer.cs">
+      <DependentUpon>FormModal.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormRegister.cs">
       <SubType>Form</SubType>
     </Compile>

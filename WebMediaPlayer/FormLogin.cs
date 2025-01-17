@@ -42,6 +42,7 @@ namespace WebMediaPlayer
 				{
 					MessageBox.Show("Login riuscito!", "WebMediaPlayer", MessageBoxButtons.OK, MessageBoxIcon.Information);
 					mainForm.Username = username;
+					mainForm.UserId = dbHelper.GetUserId(username);
 					LoginSuccessful?.Invoke(); // Invia l'evento per abilitare i pulsanti nella Homepage
 					mainForm.CloseFormsInput(); // Chiude il form di login
 				}
