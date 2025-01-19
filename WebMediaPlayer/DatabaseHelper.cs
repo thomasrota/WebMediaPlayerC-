@@ -116,6 +116,22 @@ namespace WebMediaPlayer
 			return userId;
 		}
 
+		public string GetUsrImg(int userId)
+		{
+			string query = "SELECT immagine FROM wbm_utente WHERE id = @id";
+			string img = "";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@id", userId);
+					img = command.ExecuteScalar().ToString();
+				}
+			}
+			return img;
+		}
+
 		public List<(int id, string nome, string immagine)> GetRecentArtists(int userId)
 		{
 			string query = @"
@@ -154,6 +170,7 @@ namespace WebMediaPlayer
 
 			return recentArtists;
 		}
+
 		public List<(int id, string titolo, string immagine)> GetRecommendedAlbums(int userId)
 		{
 			string query = @"
@@ -190,6 +207,7 @@ namespace WebMediaPlayer
 
 			return recommendedAlbums;
 		}
+
 		public int GetArtistId(string artistName)
 		{
 			string query = "SELECT id FROM WBM_artista WHERE nome = @artist";
@@ -205,6 +223,7 @@ namespace WebMediaPlayer
 			}
 			return artistId;
 		}
+
 		public List<(string titolo, string album, string mp3)> GetRecentTracksByArtist(string artist)
 		{
 			int artistId = GetArtistId(artist);
@@ -241,6 +260,54 @@ namespace WebMediaPlayer
 
 			return tracks;
 		}
+
+		public List<(string titolo, string mp3)> GetTracksByAlbum(int albumId)
+		{
+			string query = @"
+                SELECT b.titolo, b.mp3 
+                FROM WBM_brano b
+                WHERE b.id_album = @albumId
+                ORDER BY b.id ASC";
+
+			var tracks = new List<(string titolo, string mp3)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@albumId", albumId);
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							string titolo = reader.GetString("titolo");
+							string mp3 = reader.GetString("mp3");
+							tracks.Add((titolo, mp3));
+						}
+					}
+				}
+			}
+
+			return tracks;
+		}
+
+		public int GetAlbumId(string album)
+		{
+			string query = "SELECT id FROM WBM_album WHERE titolo = @album";
+			int albumId = -1;
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@album", album);
+					albumId = Convert.ToInt32(command.ExecuteScalar());
+				}
+			}
+
+			return albumId;
+		}
 	}
 }
-

@@ -33,7 +33,6 @@
 			this.buttonCloseModal = new System.Windows.Forms.Button();
 			this.labelModalTitle = new System.Windows.Forms.Label();
 			this.labelTitleSeparator = new System.Windows.Forms.Label();
-			this.panelModalContent = new System.Windows.Forms.Panel();
 			this.panelModalTitle.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -79,21 +78,12 @@
 			this.labelTitleSeparator.Size = new System.Drawing.Size(594, 2);
 			this.labelTitleSeparator.TabIndex = 3;
 			// 
-			// panelModalContent
-			// 
-			this.panelModalContent.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panelModalContent.Location = new System.Drawing.Point(0, 95);
-			this.panelModalContent.Name = "panelModalContent";
-			this.panelModalContent.Size = new System.Drawing.Size(594, 625);
-			this.panelModalContent.TabIndex = 4;
-			// 
 			// FormModal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(46)))), ((int)(((byte)(46)))));
 			this.ClientSize = new System.Drawing.Size(594, 720);
-			this.Controls.Add(this.panelModalContent);
 			this.Controls.Add(this.labelTitleSeparator);
 			this.Controls.Add(this.panelModalTitle);
 			this.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -117,6 +107,5 @@
 		private System.Windows.Forms.Label labelModalTitle;
 		private System.Windows.Forms.Button buttonCloseModal;
 		private System.Windows.Forms.Label labelTitleSeparator;
-		private System.Windows.Forms.Panel panelModalContent;
 	}
 }

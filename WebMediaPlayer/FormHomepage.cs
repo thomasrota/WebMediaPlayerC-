@@ -97,10 +97,11 @@ namespace WebMediaPlayer
 				BackColor = Color.FromArgb(51, 51, 51)
 			};
 
-			string imagePath = item.imagePath;
+			string directory = isAlbum ? "albumimg" : "artistimg";
+			string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, directory, item.imagePath);
 			if (!File.Exists(imagePath))
 			{
-				imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "img", "default.jpg"); // Percorso assoluto dell'immagine predefinita
+				imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, directory, "default.jpg");
 			}
 
 			var pictureBox = new PictureBox
