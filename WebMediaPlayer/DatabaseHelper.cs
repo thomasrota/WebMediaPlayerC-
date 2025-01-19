@@ -293,21 +293,128 @@ namespace WebMediaPlayer
 			return tracks;
 		}
 
-		public int GetAlbumId(string album)
+		public int GetAlbumId(string albumTitle)
 		{
-			string query = "SELECT id FROM WBM_album WHERE titolo = @album";
+			string query = "SELECT id FROM WBM_album WHERE titolo = @albumTitle";
 			int albumId = -1;
 			using (var connection = GetConnection())
 			{
 				connection.Open();
 				using (var command = new MySqlCommand(query, connection))
 				{
-					command.Parameters.AddWithValue("@album", album);
+					command.Parameters.AddWithValue("@albumTitle", albumTitle);
 					albumId = Convert.ToInt32(command.ExecuteScalar());
 				}
 			}
-
 			return albumId;
+		}
+
+		public void InsertAlbum(string albumTitle, string year, string image)
+		{
+			string query = "INSERT INTO WBM_album (titolo, anno, immagine) VALUES (@albumTitle, @year, @image)";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@albumTitle", albumTitle);
+					command.Parameters.AddWithValue("@year", year);
+					command.Parameters.AddWithValue("@image", image);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void UpdateAlbumImage(int albumId, string image)
+		{
+			string query = "UPDATE WBM_album SET immagine = @image WHERE id = @albumId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@image", image);
+					command.Parameters.AddWithValue("@albumId", albumId);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void InsertTrack(string trackTitle, int albumId, string filePath)
+		{
+			string query = "INSERT INTO WBM_brano (titolo, id_album, mp3) VALUES (@trackTitle, @albumId, @filePath)";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@trackTitle", trackTitle);
+					command.Parameters.AddWithValue("@albumId", albumId);
+					command.Parameters.AddWithValue("@filePath", filePath);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void InsertArtist(string artistName)
+		{
+			string query = "INSERT INTO WBM_artista (nome) VALUES (@artistName)";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistName", artistName);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void LinkArtistToAlbum(int artistId, int albumId)
+		{
+			string query = "INSERT INTO WBM_artista_album (id_artista, id_album) VALUES (@artistId, @albumId)";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+					command.Parameters.AddWithValue("@albumId", albumId);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void LinkTrackToUser(int userId, int trackId)
+		{
+			string query = "INSERT INTO WBM_utente_brani (id_utente, id_brano) VALUES (@userId, @trackId)";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+					command.Parameters.AddWithValue("@trackId", trackId);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public int GetTrackId(string trackTitle, int albumId)
+		{
+			string query = "SELECT id FROM WBM_brano WHERE titolo = @trackTitle AND id_album = @albumId";
+			int trackId = -1;
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@trackTitle", trackTitle);
+					command.Parameters.AddWithValue("@albumId", albumId);
+					trackId = Convert.ToInt32(command.ExecuteScalar());
+				}
+			}
+			return trackId;
 		}
 	}
 }

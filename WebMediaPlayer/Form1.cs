@@ -45,22 +45,23 @@ namespace WebMediaPlayer
 
 		private void buttonSrc_Click(object sender, EventArgs e)
 		{
-
+			CloseFormsInput();
 		}
 
 		private void buttonUpload_Click(object sender, EventArgs e)
 		{
-
+			CloseFormsInput();
+			OpenFormInput<FormUpload>();
 		}
 
 		private void buttonLibrary_Click(object sender, EventArgs e)
 		{
-
+			CloseFormsInput();
 		}
 
 		private void buttonViewProfile_Click(object sender, EventArgs e)
 		{
-
+			CloseFormsInput();
 		}
 
 		private void buttonProfile_Click(object sender, EventArgs e)
