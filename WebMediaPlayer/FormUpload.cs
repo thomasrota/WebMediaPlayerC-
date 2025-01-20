@@ -8,22 +8,6 @@ namespace WebMediaPlayer
 {
 	public partial class FormUpload : Form
 	{
-		private Label labelTrackFile;
-		private System.Windows.Forms.TextBox textBoxTrackFile;
-		private Button buttonBrowseTrack;
-		private Label labelAlbumImage;
-		private System.Windows.Forms.TextBox textBoxAlbumImage;
-		private Button buttonBrowseAlbumImage;
-		private Button buttonUpload;
-		private Label labelTrackTitle;
-		private System.Windows.Forms.TextBox textBoxTrackTitle;
-		private Label labelArtist;
-		private System.Windows.Forms.TextBox textBoxArtist;
-		private Label labelAlbum;
-		private System.Windows.Forms.TextBox textBoxAlbum;
-		private Label labelYear;
-		private System.Windows.Forms.TextBox textBoxYear;
-		private Button buttonConfirm;
 		private OpenFileDialog openFileDialog;
 		private string trackFilePath;
 		private string albumImagePath;
@@ -33,130 +17,6 @@ namespace WebMediaPlayer
 		public FormUpload()
 		{
 			InitializeComponent();
-			InitializeForm();
-		}
-
-		private void InitializeForm()
-		{
-			this.Text = "Carica Brano";
-			this.Size = new Size(600, 400);
-
-			labelTrackFile = new Label
-			{
-				Text = "File del brano",
-				Location = new Point(20, 20),
-				AutoSize = true
-			};
-			textBoxTrackFile = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 20),
-				Width = 300
-			};
-			buttonBrowseTrack = new Button
-			{
-				Text = "Sfoglia",
-				Location = new Point(460, 20)
-			};
-			buttonBrowseTrack.Click += ButtonBrowseTrack_Click;
-
-			labelAlbumImage = new Label
-			{
-				Text = "Immagine dell'album (opzionale)",
-				Location = new Point(20, 60),
-				AutoSize = true
-			};
-			textBoxAlbumImage = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 60),
-				Width = 300
-			};
-			buttonBrowseAlbumImage = new Button
-			{
-				Text = "Sfoglia",
-				Location = new Point(460, 60)
-			};
-			buttonBrowseAlbumImage.Click += ButtonBrowseAlbumImage_Click;
-
-			buttonUpload = new Button
-			{
-				Text = "Carica",
-				Location = new Point(150, 100)
-			};
-			buttonUpload.Click += ButtonUpload_Click;
-
-			labelTrackTitle = new Label
-			{
-				Text = "Titolo del brano",
-				Location = new Point(20, 140),
-				AutoSize = true
-			};
-			textBoxTrackTitle = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 140),
-				Width = 300
-			};
-
-			labelArtist = new Label
-			{
-				Text = "Artista",
-				Location = new Point(20, 180),
-				AutoSize = true
-			};
-			textBoxArtist = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 180),
-				Width = 300
-			};
-
-			labelAlbum = new Label
-			{
-				Text = "Album",
-				Location = new Point(20, 220),
-				AutoSize = true
-			};
-			textBoxAlbum = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 220),
-				Width = 300
-			};
-
-			labelYear = new Label
-			{
-				Text = "Anno",
-				Location = new Point(20, 260),
-				AutoSize = true
-			};
-			textBoxYear = new System.Windows.Forms.TextBox
-			{
-				Location = new Point(150, 260),
-				Width = 300
-			};
-
-			buttonConfirm = new Button
-			{
-				Text = "Conferma",
-				Location = new Point(150, 300)
-			};
-			buttonConfirm.Click += ButtonConfirm_Click;
-
-			this.Controls.Add(labelTrackFile);
-			this.Controls.Add(textBoxTrackFile);
-			this.Controls.Add(buttonBrowseTrack);
-			this.Controls.Add(labelAlbumImage);
-			this.Controls.Add(textBoxAlbumImage);
-			this.Controls.Add(buttonBrowseAlbumImage);
-			this.Controls.Add(buttonUpload);
-			this.Controls.Add(labelTrackTitle);
-			this.Controls.Add(textBoxTrackTitle);
-			this.Controls.Add(labelArtist);
-			this.Controls.Add(textBoxArtist);
-			this.Controls.Add(labelAlbum);
-			this.Controls.Add(textBoxAlbum);
-			this.Controls.Add(labelYear);
-			this.Controls.Add(textBoxYear);
-			this.Controls.Add(buttonConfirm);
-
-			openFileDialog = new OpenFileDialog();
 		}
 
 		private void ButtonBrowseTrack_Click(object sender, EventArgs e)
@@ -213,10 +73,10 @@ namespace WebMediaPlayer
 
 		private void ButtonConfirm_Click(object sender, EventArgs e)
 		{
-			string trackTitle = textBoxTrackTitle.Text;
-			string artist = textBoxArtist.Text;
-			string album = textBoxAlbum.Text;
-			string year = textBoxYear.Text;
+			string trackTitle = textBoxConfirmTitle.Text;
+			string artist = textBoxConfirmArtist.Text;
+			string album = textBoxConfirmAlbum.Text;
+			string year = textBoxConfirmYear.Text;
 			string albumImage = string.IsNullOrEmpty(albumImagePath) ? "default.jpg" : Path.GetFileName(albumImagePath);
 
 			if (string.IsNullOrEmpty(trackTitle) || string.IsNullOrEmpty(artist))
@@ -278,10 +138,10 @@ namespace WebMediaPlayer
 			try
 			{
 				var file = TagLib.File.Create(filePath);
-				textBoxTrackTitle.Text = file.Tag.Title;
-				textBoxArtist.Text = string.Join(", ", file.Tag.Performers);
-				textBoxAlbum.Text = file.Tag.Album;
-				textBoxYear.Text = file.Tag.Year.ToString();
+				textBoxConfirmTitle.Text = file.Tag.Title;
+				textBoxConfirmArtist.Text = string.Join(", ", file.Tag.Performers);
+				textBoxConfirmAlbum.Text = file.Tag.Album;
+				textBoxConfirmYear.Text = file.Tag.Year.ToString();
 			}
 			catch (Exception ex)
 			{
