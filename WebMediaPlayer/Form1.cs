@@ -46,6 +46,7 @@ namespace WebMediaPlayer
 		private void buttonSrc_Click(object sender, EventArgs e)
 		{
 			CloseFormsInput();
+			OpenFormInput<FormSearch>();
 		}
 
 		private void buttonUpload_Click(object sender, EventArgs e)
@@ -57,11 +58,13 @@ namespace WebMediaPlayer
 		private void buttonLibrary_Click(object sender, EventArgs e)
 		{
 			CloseFormsInput();
+			OpenFormInput<FormLibrary>();
 		}
 
 		private void buttonViewProfile_Click(object sender, EventArgs e)
 		{
 			CloseFormsInput();
+			OpenFormInput<FormProfile>();
 		}
 
 		private void buttonProfile_Click(object sender, EventArgs e)
