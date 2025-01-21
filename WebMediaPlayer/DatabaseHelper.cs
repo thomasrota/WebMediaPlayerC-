@@ -565,5 +565,60 @@ namespace WebMediaPlayer
 
 			return albums;
 		}
+		public (string Username, string Email) GetUserById(int userId)
+		{
+			string query = "SELECT username, email FROM wbm_utente WHERE id = @userId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+					using (var reader = command.ExecuteReader())
+					{
+						if (reader.Read())
+						{
+							string username = reader.GetString("username");
+							string email = reader.GetString("email");
+							return (username, email);
+						}
+					}
+				}
+			}
+			return (null, null);
+		}
+
+		public void UpdateUserProfile(int userId, string newUsername, string newPassword)
+		{
+			string query = "UPDATE wbm_utente SET username = @newUsername, password = @newPassword WHERE id = @userId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+					command.Parameters.AddWithValue("@newUsername", newUsername);
+					command.Parameters.AddWithValue("@newPassword", BCrypt.Net.BCrypt.HashPassword(newPassword));
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		public void UpdateUserImage(int userId, string imagePath)
+		{
+			string query = "UPDATE wbm_utente SET immagine = @imagePath WHERE id = @userId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@imagePath", imagePath);
+					command.Parameters.AddWithValue("@userId", userId);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+
 	}
 }
