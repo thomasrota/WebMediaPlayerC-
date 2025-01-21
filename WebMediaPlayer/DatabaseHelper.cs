@@ -533,5 +533,37 @@ namespace WebMediaPlayer
 				}
 			}
 		}
+		public List<(int id, string titolo, string immagine)> GetAlbumsByArtist(int artistId)
+		{
+			string query = @"
+		        SELECT al.id, al.titolo, al.immagine 
+		        FROM WBM_album al
+		        JOIN WBM_artista_album aa ON al.id = aa.id_album
+		        WHERE aa.id_artista = @artistId";
+
+			var albums = new List<(int id, string titolo, string immagine)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							int id = reader.GetInt32("id");
+							string titolo = reader.GetString("titolo");
+							string immagine = reader.GetString("immagine");
+							albums.Add((id, titolo, immagine));
+						}
+					}
+				}
+			}
+
+			return albums;
+		}
 	}
 }

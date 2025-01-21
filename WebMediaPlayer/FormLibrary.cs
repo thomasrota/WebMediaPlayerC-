@@ -4,13 +4,14 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Org.BouncyCastle.Bcpg;
 
 namespace WebMediaPlayer
 {
 	public partial class FormLibrary : Form
 	{
 		private Homepage mainForm;
-
+		public int UserId { get; set; }
 		public FormLibrary(Homepage parentForm)
 		{
 			mainForm = parentForm;
