@@ -40,7 +40,7 @@
 			this.labelWelcome.AutoSize = true;
 			this.labelWelcome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelWelcome.ForeColor = System.Drawing.Color.White;
-			this.labelWelcome.Location = new System.Drawing.Point(32, 28);
+			this.labelWelcome.Location = new System.Drawing.Point(32, 6);
 			this.labelWelcome.Name = "labelWelcome";
 			this.labelWelcome.Size = new System.Drawing.Size(0, 28);
 			this.labelWelcome.TabIndex = 0;
@@ -49,7 +49,7 @@
 			// 
 			this.flowLayoutPanelRecents.AutoScroll = true;
 			this.flowLayoutPanelRecents.ForeColor = System.Drawing.Color.White;
-			this.flowLayoutPanelRecents.Location = new System.Drawing.Point(37, 83);
+			this.flowLayoutPanelRecents.Location = new System.Drawing.Point(37, 61);
 			this.flowLayoutPanelRecents.Name = "flowLayoutPanelRecents";
 			this.flowLayoutPanelRecents.Size = new System.Drawing.Size(973, 290);
 			this.flowLayoutPanelRecents.TabIndex = 1;
@@ -60,7 +60,7 @@
 			this.labelRecents.AutoSize = true;
 			this.labelRecents.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelRecents.ForeColor = System.Drawing.Color.White;
-			this.labelRecents.Location = new System.Drawing.Point(34, 63);
+			this.labelRecents.Location = new System.Drawing.Point(34, 41);
 			this.labelRecents.Name = "labelRecents";
 			this.labelRecents.Size = new System.Drawing.Size(140, 20);
 			this.labelRecents.TabIndex = 2;
@@ -72,7 +72,7 @@
 			this.labelRecomended.AutoSize = true;
 			this.labelRecomended.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelRecomended.ForeColor = System.Drawing.Color.White;
-			this.labelRecomended.Location = new System.Drawing.Point(38, 367);
+			this.labelRecomended.Location = new System.Drawing.Point(38, 364);
 			this.labelRecomended.Name = "labelRecomended";
 			this.labelRecomended.Size = new System.Drawing.Size(142, 20);
 			this.labelRecomended.TabIndex = 3;

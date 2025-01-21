@@ -12,37 +12,59 @@ namespace WebMediaPlayer
 		private string trackFilePath;
 		private string albumImagePath;
 
-		public int UserId { get; set; }
+		private Homepage mainForm;
 
-		public FormUpload()
+		public FormUpload(Homepage parentForm)
 		{
+			mainForm = parentForm;
 			InitializeComponent();
+			openFileDialog = new OpenFileDialog(); // Inizializza openFileDialog
+			panelConfirmUpload.Visible = false; // Nascondi il pannello di conferma all'inizio
 		}
 
-		private void ButtonBrowseTrack_Click(object sender, EventArgs e)
+		private void ExtractMetadata(string filePath)
+		{
+			try
+			{
+				var file = TagLib.File.Create(filePath);
+				textBoxConfirmTitle.Text = file.Tag.Title;
+				textBoxConfirmArtist.Text = string.Join(", ", file.Tag.Performers);
+				textBoxConfirmAlbum.Text = file.Tag.Album;
+				textBoxConfirmYear.Text = file.Tag.Year.ToString();
+
+				// Imposta le TextBox come non modificabili se riempite automaticamente
+				textBoxConfirmTitle.ReadOnly = !string.IsNullOrEmpty(textBoxConfirmTitle.Text);
+				textBoxConfirmArtist.ReadOnly = !string.IsNullOrEmpty(textBoxConfirmArtist.Text);
+				textBoxConfirmAlbum.ReadOnly = !string.IsNullOrEmpty(textBoxConfirmAlbum.Text);
+				textBoxConfirmYear.ReadOnly = !string.IsNullOrEmpty(textBoxConfirmYear.Text);
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Errore nell'estrazione dei metadati: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void buttonBrowseTrack_Click(object sender, EventArgs e)
 		{
 			openFileDialog.Filter = "Audio Files|*.mp3;*.wav";
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				trackFilePath = openFileDialog.FileName;
-				textBoxTrackFile.Text = trackFilePath;
-
 				// Estrai i metadati dal file audio
 				ExtractMetadata(trackFilePath);
 			}
 		}
 
-		private void ButtonBrowseAlbumImage_Click(object sender, EventArgs e)
+		private void buttonBrowseAlbumImage_Click(object sender, EventArgs e)
 		{
 			openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png";
 			if (openFileDialog.ShowDialog() == DialogResult.OK)
 			{
 				albumImagePath = openFileDialog.FileName;
-				textBoxAlbumImage.Text = albumImagePath;
 			}
 		}
 
-		private void ButtonUpload_Click(object sender, EventArgs e)
+		private void buttonUploadFiles_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrEmpty(trackFilePath))
 			{
@@ -63,7 +85,18 @@ namespace WebMediaPlayer
 			try
 			{
 				System.IO.File.Copy(trackFilePath, targetFile, true);
+
+				if (!string.IsNullOrEmpty(albumImagePath))
+				{
+					string albumImageDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "albumimg");
+					string albumImageFile = Path.Combine(albumImageDir, Path.GetFileName(albumImagePath));
+					System.IO.File.Copy(albumImagePath, albumImageFile, true);
+				}
+
 				MessageBox.Show("File caricato con successo! Compila i campi rimanenti e conferma.", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+				// Mostra il pannello di conferma del caricamento
+				panelConfirmUpload.Visible = true;
 			}
 			catch (Exception ex)
 			{
@@ -71,7 +104,7 @@ namespace WebMediaPlayer
 			}
 		}
 
-		private void ButtonConfirm_Click(object sender, EventArgs e)
+		private void buttonConfirmUpload_Click(object sender, EventArgs e)
 		{
 			string trackTitle = textBoxConfirmTitle.Text;
 			string artist = textBoxConfirmArtist.Text;
@@ -89,12 +122,25 @@ namespace WebMediaPlayer
 			{
 				using (var dbHelper = new DatabaseHelper())
 				{
+					// Verifica se l'utente esiste
+					int userId = dbHelper.GetUserIdById(mainForm.UserId);
+					if (userId == -1)
+					{
+						MessageBox.Show("Utente non trovato.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+						return;
+					}
+
 					// Insert album if not exists
 					int albumId = dbHelper.GetAlbumId(album);
 					if (albumId == -1)
 					{
 						dbHelper.InsertAlbum(album, year, albumImage);
 						albumId = dbHelper.GetAlbumId(album);
+						if (albumId == -1)
+						{
+							MessageBox.Show("Errore nell'inserimento dell'album.", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
+							return;
+						}
 					}
 					else
 					{
@@ -122,7 +168,7 @@ namespace WebMediaPlayer
 					}
 
 					// Link track to user
-					dbHelper.LinkTrackToUser(UserId, dbHelper.GetTrackId(trackTitle, albumId));
+					dbHelper.LinkTrackToUser(mainForm.UserId, dbHelper.GetTrackId(trackTitle, albumId));
 
 					MessageBox.Show("Brano caricato con successo!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 				}
@@ -132,33 +178,5 @@ namespace WebMediaPlayer
 				MessageBox.Show($"Errore di sistema: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
-		private void ExtractMetadata(string filePath)
-		{
-			try
-			{
-				var file = TagLib.File.Create(filePath);
-				textBoxConfirmTitle.Text = file.Tag.Title;
-				textBoxConfirmArtist.Text = string.Join(", ", file.Tag.Performers);
-				textBoxConfirmAlbum.Text = file.Tag.Album;
-				textBoxConfirmYear.Text = file.Tag.Year.ToString();
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show($"Errore nell'estrazione dei metadati: {ex.Message}", "Errore", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-

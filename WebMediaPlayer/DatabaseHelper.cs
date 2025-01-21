@@ -48,6 +48,22 @@ namespace WebMediaPlayer
 			}
 		}
 
+		public object ExecuteScalar(string query, Dictionary<string, object> parameters)
+		{
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					foreach (var param in parameters)
+					{
+						command.Parameters.AddWithValue(param.Key, param.Value);
+					}
+					return command.ExecuteScalar();
+				}
+			}
+		}
+
 		public void Dispose()
 		{
 			// Nothing to dispose
@@ -92,7 +108,7 @@ namespace WebMediaPlayer
 						command.ExecuteNonQuery();
 						return true; // Registrazione avvenuta con successo
 					}
-					catch (MySqlException ex)
+					catch (MySqlException)
 					{
 						return false;
 					}
@@ -110,10 +126,29 @@ namespace WebMediaPlayer
 				using (var command = new MySqlCommand(query, connection))
 				{
 					command.Parameters.AddWithValue("@username", username);
-					userId = Convert.ToInt32(command.ExecuteScalar());
+					var result = command.ExecuteScalar();
+					if (result != null)
+					{
+						userId = Convert.ToInt32(result);
+					}
 				}
 			}
 			return userId;
+		}
+
+		public int GetUserIdById(int userId)
+		{
+			string query = "SELECT id FROM wbm_utente WHERE id = @userId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@userId", userId);
+					var result = command.ExecuteScalar();
+					return result != null ? Convert.ToInt32(result) : -1;
+				}
+			}
 		}
 
 		public string GetUsrImg(int userId)
@@ -218,7 +253,11 @@ namespace WebMediaPlayer
 				using (var command = new MySqlCommand(query, connection))
 				{
 					command.Parameters.AddWithValue("@artist", artistName);
-					artistId = Convert.ToInt32(command.ExecuteScalar());
+					var result = command.ExecuteScalar();
+					if (result != null)
+					{
+						artistId = Convert.ToInt32(result);
+					}
 				}
 			}
 			return artistId;
@@ -303,7 +342,11 @@ namespace WebMediaPlayer
 				using (var command = new MySqlCommand(query, connection))
 				{
 					command.Parameters.AddWithValue("@albumTitle", albumTitle);
-					albumId = Convert.ToInt32(command.ExecuteScalar());
+					var result = command.ExecuteScalar();
+					if (result != null)
+					{
+						albumId = Convert.ToInt32(result);
+					}
 				}
 			}
 			return albumId;
@@ -411,7 +454,11 @@ namespace WebMediaPlayer
 				{
 					command.Parameters.AddWithValue("@trackTitle", trackTitle);
 					command.Parameters.AddWithValue("@albumId", albumId);
-					trackId = Convert.ToInt32(command.ExecuteScalar());
+					var result = command.ExecuteScalar();
+					if (result != null)
+					{
+						trackId = Convert.ToInt32(result);
+					}
 				}
 			}
 			return trackId;
