@@ -136,6 +136,8 @@ namespace WebMediaPlayer
 					FormInput = new FormHomepage(this);
 				else if (typeof(TypeOfForm) == typeof(FormUpload))
 					FormInput = new FormUpload(this);
+				else if (typeof(TypeOfForm) == typeof(FormLibrary))
+					FormInput = new FormLibrary(this);
 				else
 				{
 					// Usa il costruttore predefinito per altri form

@@ -262,6 +262,25 @@ namespace WebMediaPlayer
 			}
 			return artistId;
 		}
+		public string GetArtistName(int artistId)
+		{
+			string query = "SELECT nome FROM WBM_artista WHERE id = @artistId";
+			string artistName = "";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+					var result = command.ExecuteScalar();
+					if (result != null)
+					{
+						artistName = result.ToString();
+					}
+				}
+			}
+			return artistName;
+		}
 
 		public List<(string titolo, string album, string mp3)> GetRecentTracksByArtist(string artist)
 		{
@@ -462,6 +481,57 @@ namespace WebMediaPlayer
 				}
 			}
 			return trackId;
+		}
+		public int GetTrackCountByArtist(int artistId)
+		{
+			string query = @"
+		        SELECT COUNT(b.id) 
+		        FROM WBM_brano b
+		        JOIN WBM_artista_album aa ON b.id_album = aa.id_album
+		        WHERE aa.id_artista = @artistId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+					var result = command.ExecuteScalar();
+					return result != null ? Convert.ToInt32(result) : 0;
+				}
+			}
+		}
+
+		public void UpdateArtistImage(int artistId, string imagePath)
+		{
+			string query = "UPDATE WBM_artista SET immagine = @imagePath WHERE id = @artistId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@imagePath", imagePath);
+					command.Parameters.AddWithValue("@artistId", artistId);
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+		public int GetAlbumCountByArtist(int artistId)
+		{
+			string query = @"
+		        SELECT COUNT(al.id) 
+		        FROM WBM_album al
+		        JOIN WBM_artista_album aa ON al.id = aa.id_album
+		        WHERE aa.id_artista = @artistId";
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@artistId", artistId);
+					var result = command.ExecuteScalar();
+					return result != null ? Convert.ToInt32(result) : 0;
+				}
+			}
 		}
 	}
 }
