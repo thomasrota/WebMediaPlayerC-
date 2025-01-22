@@ -619,6 +619,49 @@ namespace WebMediaPlayer
 			}
 		}
 
+		public List<(string title, string description)> SearchDatabase(int userId, string searchText)
+		{
+			var results = new List<(string title, string description)>();
 
+			// Cerca negli album
+			string queryAlbum = "SELECT titolo AS title, anno AS description FROM WBM_album WHERE titolo LIKE @searchText";
+			results.AddRange(SearchTable(queryAlbum, searchText));
+
+			// Cerca nei brani
+			string queryBrano = "SELECT titolo AS title, mp3 AS description FROM WBM_brano WHERE titolo LIKE @searchText";
+			results.AddRange(SearchTable(queryBrano, searchText));
+
+			// Cerca negli artisti
+			string queryArtista = "SELECT nome AS title, immagine AS description FROM WBM_artista WHERE nome LIKE @searchText";
+			results.AddRange(SearchTable(queryArtista, searchText));
+
+			return results;
+		}
+
+		private List<(string title, string description)> SearchTable(string query, string searchText)
+		{
+			var results = new List<(string title, string description)>();
+
+			using (var connection = GetConnection())
+			{
+				connection.Open();
+				using (var command = new MySqlCommand(query, connection))
+				{
+					command.Parameters.AddWithValue("@searchText", "%" + searchText + "%");
+
+					using (var reader = command.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							string title = reader.GetString("title");
+							string description = reader.GetString("description");
+							results.Add((title, description));
+						}
+					}
+				}
+			}
+
+			return results;
+		}
 	}
 }

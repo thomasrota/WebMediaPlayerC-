@@ -140,6 +140,8 @@ namespace WebMediaPlayer
 					FormInput = new FormLibrary(this);
 				else if (typeof(TypeOfForm) == typeof(FormProfile))
 					FormInput = new FormProfile(this);
+				else if (typeof(TypeOfForm) == typeof(FormSearch))
+					FormInput = new FormSearch(this);
 				else
 				{
 					// Usa il costruttore predefinito per altri form

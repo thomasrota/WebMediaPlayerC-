@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Org.BouncyCastle.Pqc.Crypto.Frodo;
 using TagLib;
 
 namespace WebMediaPlayer
@@ -62,6 +63,16 @@ namespace WebMediaPlayer
 			{
 				albumImagePath = openFileDialog.FileName;
 			}
+		}
+		private void OnMouseEnterButtonBrowseTrack(object sender, EventArgs e)
+		{
+			buttonBrowseTrack.BackColor = Color.FromArgb(29, 184, 85);
+			//buttonBrowseAlbumImage.BackColor = Color.FromArgb(29, 184, 85);
+		}
+
+		private void OnMouseLeaveButton1(object sender, EventArgs e)
+		{
+			buttonBrowseTrack.BackColor = SystemColors.Control;
 		}
 
 		private void buttonUploadFiles_Click(object sender, EventArgs e)
