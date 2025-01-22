@@ -41,9 +41,9 @@
 			this.buttonLibrary = new System.Windows.Forms.Button();
 			this.buttonProfile = new System.Windows.Forms.Button();
 			this.panelSidebar = new System.Windows.Forms.Panel();
-			this.panelApp = new System.Windows.Forms.Panel();
-			this.buttonLogout = new System.Windows.Forms.Button();
 			this.buttonViewProfile = new System.Windows.Forms.Button();
+			this.buttonLogout = new System.Windows.Forms.Button();
+			this.panelApp = new System.Windows.Forms.Panel();
 			this.panelTitle.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxTitle)).BeginInit();
 			this.panelSidebar.SuspendLayout();
@@ -212,13 +212,21 @@
 			this.panelSidebar.Size = new System.Drawing.Size(167, 671);
 			this.panelSidebar.TabIndex = 0;
 			// 
-			// panelApp
+			// buttonViewProfile
 			// 
-			this.panelApp.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.panelApp.Location = new System.Drawing.Point(167, 0);
-			this.panelApp.Name = "panelApp";
-			this.panelApp.Size = new System.Drawing.Size(1058, 671);
-			this.panelApp.TabIndex = 1;
+			this.buttonViewProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
+			this.buttonViewProfile.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.buttonViewProfile.FlatAppearance.BorderSize = 0;
+			this.buttonViewProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.buttonViewProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.buttonViewProfile.Location = new System.Drawing.Point(0, 531);
+			this.buttonViewProfile.Name = "buttonViewProfile";
+			this.buttonViewProfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.buttonViewProfile.Size = new System.Drawing.Size(167, 35);
+			this.buttonViewProfile.TabIndex = 10;
+			this.buttonViewProfile.Text = "Profilo";
+			this.buttonViewProfile.UseVisualStyleBackColor = false;
+			this.buttonViewProfile.Click += new System.EventHandler(this.buttonViewProfile_Click);
 			// 
 			// buttonLogout
 			// 
@@ -236,21 +244,14 @@
 			this.buttonLogout.UseVisualStyleBackColor = false;
 			this.buttonLogout.Click += new System.EventHandler(this.buttonLogout_Click);
 			// 
-			// buttonViewProfile
+			// panelApp
 			// 
-			this.buttonViewProfile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-			this.buttonViewProfile.Dock = System.Windows.Forms.DockStyle.Bottom;
-			this.buttonViewProfile.FlatAppearance.BorderSize = 0;
-			this.buttonViewProfile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonViewProfile.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.buttonViewProfile.Location = new System.Drawing.Point(0, 531);
-			this.buttonViewProfile.Name = "buttonViewProfile";
-			this.buttonViewProfile.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.buttonViewProfile.Size = new System.Drawing.Size(167, 35);
-			this.buttonViewProfile.TabIndex = 10;
-			this.buttonViewProfile.Text = "Profilo";
-			this.buttonViewProfile.UseVisualStyleBackColor = false;
-			this.buttonViewProfile.Click += new System.EventHandler(this.buttonViewProfile_Click);
+			this.panelApp.BackColor = System.Drawing.Color.Black;
+			this.panelApp.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panelApp.Location = new System.Drawing.Point(167, 0);
+			this.panelApp.Name = "panelApp";
+			this.panelApp.Size = new System.Drawing.Size(1058, 671);
+			this.panelApp.TabIndex = 1;
 			// 
 			// Homepage
 			// 
